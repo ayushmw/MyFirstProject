@@ -9,6 +9,11 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
+
+    private String[] month= {"Month","Jan(1)","Feb(2)","Mar(3)","Apr(4)","May(5)","Jun(6)", "Jul(7)", "Aug(8)","Sep(9)", "Oct(10)","Nov(11)","Dec(12)"};
+
+    private String year[] =  new String[100];
+
     private Toolbar toolbar;
 
     @Override
@@ -21,6 +26,24 @@ public class MainActivity extends ActionBarActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+//Using arrayAdapter to fill data in months 
+ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, month);
+        Spinner spinner1 = (Spinner)findViewById(R.id.month);
+        spinner1.setAdapter(adapter_state1);
+
+
+        //Adding items to dropdown menu of year
+        year[0]= "Year";
+        for(int i=2015; i<2050; i++ ){
+            year[i-2014]= Integer.toString(i);
+        }
+
+
+        ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
+        Spinner spinner2 = (Spinner)findViewById(R.id.year);
+        spinner2.setAdapter(adapter_state2);
+
     }
 
     @Override
