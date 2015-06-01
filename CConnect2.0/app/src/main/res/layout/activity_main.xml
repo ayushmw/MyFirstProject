@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="#ffffff">
+=======
+    android:background="#F1F8E9">
+>>>>>>> d49de74dbea50a9b889fad98829e908abede85d5
 
 
 
@@ -22,7 +26,7 @@
             <include
             android:id="@+id/app_bar"
             layout="@layout/app_bar" />
-            
+
         <EditText
             android:id="@+id/cardInput"
             android:layout_width="wrap_content"
@@ -164,7 +168,11 @@
             android:capitalize="words" />
 
     </RelativeLayout>
+<<<<<<< HEAD
 
     </ScrollView>
 
+=======
+    </ScrollView>
+>>>>>>> d49de74dbea50a9b889fad98829e908abede85d5
 </RelativeLayout>
