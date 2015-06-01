@@ -151,6 +151,7 @@
                 android:layout_alignLeft="@+id/year"
                 android:layout_alignStart="@+id/year"
                 android:layout_alignTop="@+id/cvvInput"
+                android:layout_alignBottom="@+id/cvvInput"
                 android:layout_alignRight="@+id/year"
                 android:layout_alignEnd="@+id/year" />
 
