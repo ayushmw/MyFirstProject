@@ -13,8 +13,6 @@ import android.view.View.OnKeyListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-
 import java.util.Calendar;
 
 
@@ -22,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    private String[] month= {"Month","Jan","Feb","Mar","Apr","May","Jun", "Jul", "Aug","Sep", "Oct","Nov","Dec"};
+    private String[] month= {"Month","JAN","FEB","MAR","APR","MAY","JUN", "JUL", "AUG","SEP", "OCT","NOV","DEC"};
 
     private String year[] =  new String[52];
 
@@ -44,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Using arrayAdapter to fill data in month spinner
-        ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, month);
+        ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.preference_category, month);
 
 
         //to increase size of items in dropdown list in month spinner
@@ -59,14 +57,14 @@ public class MainActivity extends ActionBarActivity {
         int first_year = c.get(Calendar.YEAR);
 
       // Storing total years in an array
-        year[0]= "Year";
+        year[0]= "YEAR";
         for(int i=1; i<52; i++ ){
             year[i]= Integer.toString(first_year);
             first_year=first_year+1;
         }
 
         //Using arrayAdapter to fill data in year spinner
-        ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
+        ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.preference_category, year);
 
         //to increase size of items in dropdown list in year spinner
         adapter_state2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

@@ -30,16 +30,10 @@
             android:layout_toRightOf="@+id/cardNoPic"
             android:hint="@string/card_no_text"
             android:inputType="numberSigned"
-            android:maxLength="16"
-            android:autoText="false"
-            android:editable="false"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:letterSpacing="3"
-            android:linksClickable="false"
-            android:longClickable="false"
-            android:nestedScrollingEnabled="false"
-            android:textSize="15dp" />
+            android:maxLength="19"
+            android:textSize="15dp"
+            android:importantForAccessibility="yes"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/nameInput"
@@ -52,8 +46,10 @@
             android:layout_alignTop="@+id/namePic"
             android:layout_marginRight="16dp"
             android:hint="@string/card_text_hint"
-            android:inputType="textPersonName"
-            android:textSize="15dp" />
+            android:inputType="textNoSuggestions|textPersonName|textCapCharacters"
+            android:textSize="15dp"
+            android:importantForAccessibility="yes"
+            android:textAlignment="center" />
 
         <Spinner
             android:id="@+id/month"
@@ -64,7 +60,10 @@
             android:layout_alignStart="@+id/cardInput"
             android:layout_alignTop="@+id/expiryPic"
             android:dropDownVerticalOffset="-56dp"
-            android:dropDownWidth="75dp"/>
+            android:dropDownWidth="75dp"
+            android:clickable="true"
+            android:spinnerMode="dialog"
+            android:textAlignment="center" />
 
         <Spinner
             android:id="@+id/year"
@@ -75,7 +74,10 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/month"
             android:dropDownVerticalOffset="-56dp"
-            android:dropDownWidth="75dp"/>
+            android:dropDownWidth="75dp"
+            android:clickable="true"
+            android:spinnerMode="dialog"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/cvvInput"
@@ -91,7 +93,8 @@
             android:inputType="numberPassword"
             android:maxLength="3"
             android:textSize="15dp"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/cardLabelText"
@@ -105,7 +108,9 @@
             android:layout_below="@+id/cvvInput"
             android:layout_marginRight="16dp"
             android:hint="@string/label_text_hint"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:inputType="textPersonName|textCapCharacters"
+            android:textAlignment="center" />
 
         <ImageView
             android:id="@+id/cardNoPic"
