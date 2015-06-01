@@ -5,16 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"
-        tools:context="eko.cconnect20.MainActivity">
 
-        <include
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <include
             android:id="@+id/app_bar"
             layout="@layout/app_bar" />
-
+            
         <EditText
             android:id="@+id/cardInput"
             android:layout_width="wrap_content"
@@ -156,4 +163,8 @@
             android:capitalize="words" />
 
     </RelativeLayout>
+<<<<<<< HEAD
+=======
+    </ScrollView>
+>>>>>>> 286bf4af9986dfbe97954e97dabefa3a5ac58482
 </RelativeLayout>
