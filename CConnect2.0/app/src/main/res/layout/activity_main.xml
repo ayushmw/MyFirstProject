@@ -1,0 +1,148 @@
+<android.support.v4.widget.DrawerLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        tools:context="eko.cconnect20.MainActivity">
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
+
+        <EditText
+            android:id="@+id/cardInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardNoPic"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/cardNoPic"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@+id/cardNoPic"
+            android:hint="@string/card_no_text"
+            android:inputType="numberSigned" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/namePic"
+            android:layout_alignLeft="@+id/cardInput"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/cardInput"
+            android:layout_alignTop="@+id/namePic"
+            android:layout_marginRight="16dp"
+            android:hint="@string/card_text_hint"
+            android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/month"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/expiryPic"
+            android:layout_alignLeft="@+id/cardInput"
+            android:layout_alignStart="@+id/cardInput"
+            android:layout_alignTop="@+id/expiryPic" />
+
+        <Spinner
+            android:id="@+id/year"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/month"
+            android:layout_alignTop="@+id/month"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/month" />
+
+        <EditText
+            android:id="@+id/cvvInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cvvPic"
+            android:layout_alignLeft="@+id/cardInput"
+            android:layout_alignStart="@+id/cardInput"
+            android:layout_alignTop="@+id/cvvPic"
+            android:layout_toRightOf="@+id/cvvPic"
+            android:ems="5"
+            android:hint="@string/cvv_text_hint"
+            android:inputType="numberPassword" />
+
+        <EditText
+            android:id="@+id/cardLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardLabelPic"
+            android:layout_alignLeft="@+id/cardInput"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/cardInput"
+            android:layout_alignTop="@+id/cardLabelPic"
+            android:layout_below="@+id/cvvInput"
+            android:layout_marginRight="16dp"
+            android:hint="@string/label_text_hint" />
+
+        <ImageView
+            android:id="@+id/cardNoPic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/app_bar"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/pic_size"
+            android:src="@drawable/cardno" />
+
+        <ImageView
+            android:id="@+id/namePic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/cardNoPic"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pic_size"
+            android:src="@drawable/cardname" />
+
+        <ImageView
+            android:id="@+id/expiryPic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/namePic"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pic_size"
+            android:src="@drawable/expiry" />
+
+        <ImageView
+            android:id="@+id/cvvPic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/expiryPic"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pic_size"
+            android:src="@drawable/cvv" />
+
+        <ImageView
+            android:id="@+id/cardLabelPic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/cvvPic"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pic_size"
+            android:src="@drawable/cardlabel" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button"
+            android:layout_below="@+id/cardLabelText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="58dp" />
+
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
