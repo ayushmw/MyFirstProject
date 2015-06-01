@@ -34,6 +34,9 @@ public class MainActivity extends ActionBarActivity {
 
 //Using arrayAdapter to fill data in months 
 ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, month);
+
+        //to increase size of items in dropdown list
+        adapter_state1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner1 = (Spinner)findViewById(R.id.month);
         spinner1.setAdapter(adapter_state1);
 
@@ -50,6 +53,7 @@ ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.l
 
 
         ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
+        adapter_state2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner2 = (Spinner)findViewById(R.id.year);
         spinner2.setAdapter(adapter_state2);
 
