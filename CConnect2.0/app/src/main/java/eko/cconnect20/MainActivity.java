@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.Calendar;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -34,9 +38,13 @@ ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.l
 
 
         //Adding items to dropdown menu of year
+        Calendar c = Calendar.getInstance();
+        int first_year = c.get(Calendar.YEAR);
+
         year[0]= "Year";
-        for(int i=2015; i<2050; i++ ){
-            year[i-2014]= Integer.toString(i);
+        for(int i=1; i<50; i++ ){
+            year[i]= Integer.toString(first_year);
+            first_year=first_year+1;
         }
 
 
