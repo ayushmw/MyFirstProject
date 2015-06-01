@@ -4,15 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
+
     android:background="#ffffff">
-=======
-    android:background="#F1F8E9">
->>>>>>> d49de74dbea50a9b889fad98829e908abede85d5
-
-
-
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,7 +13,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:focusable="false">
 
 
             <include
@@ -39,7 +33,15 @@
             android:layout_toRightOf="@+id/cardNoPic"
             android:hint="@string/card_no_text"
             android:inputType="numberSigned"
-            android:maxLength="16" />
+            android:maxLength="16"
+            android:autoText="false"
+            android:editable="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:letterSpacing="3"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:nestedScrollingEnabled="false" />
 
         <EditText
             android:id="@+id/nameInput"
@@ -97,7 +99,8 @@
             android:layout_alignTop="@+id/cardLabelPic"
             android:layout_below="@+id/cvvInput"
             android:layout_marginRight="16dp"
-            android:hint="@string/label_text_hint" />
+            android:hint="@string/label_text_hint"
+            />
 
         <ImageView
             android:id="@+id/cardNoPic"
@@ -168,11 +171,6 @@
             android:capitalize="words" />
 
     </RelativeLayout>
-<<<<<<< HEAD
-
     </ScrollView>
 
-=======
-    </ScrollView>
->>>>>>> d49de74dbea50a9b889fad98829e908abede85d5
 </RelativeLayout>
