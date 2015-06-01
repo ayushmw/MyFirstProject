@@ -177,7 +177,8 @@
             android:gravity="center"
             android:textSize="22dp"
             android:textStyle="normal|bold"
-            android:capitalize="words" />
+            android:capitalize="words"
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
 
