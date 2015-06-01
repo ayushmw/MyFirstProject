@@ -1,10 +1,7 @@
-<RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="#ffffff">
 
     <ScrollView
@@ -41,7 +38,8 @@
             android:letterSpacing="3"
             android:linksClickable="false"
             android:longClickable="false"
-            android:nestedScrollingEnabled="false" />
+            android:nestedScrollingEnabled="false"
+            android:textSize="15dp" />
 
         <EditText
             android:id="@+id/nameInput"
@@ -54,7 +52,8 @@
             android:layout_alignTop="@+id/namePic"
             android:layout_marginRight="16dp"
             android:hint="@string/card_text_hint"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="15dp" />
 
         <Spinner
             android:id="@+id/month"
@@ -63,7 +62,9 @@
             android:layout_alignBottom="@+id/expiryPic"
             android:layout_alignLeft="@+id/cardInput"
             android:layout_alignStart="@+id/cardInput"
-            android:layout_alignTop="@+id/expiryPic" />
+            android:layout_alignTop="@+id/expiryPic"
+            android:dropDownVerticalOffset="-56dp"
+            android:dropDownWidth="75dp"/>
 
         <Spinner
             android:id="@+id/year"
@@ -72,7 +73,9 @@
             android:layout_alignBottom="@+id/month"
             android:layout_alignTop="@+id/month"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/month" />
+            android:layout_toRightOf="@+id/month"
+            android:dropDownVerticalOffset="-56dp"
+            android:dropDownWidth="75dp"/>
 
         <EditText
             android:id="@+id/cvvInput"
@@ -86,7 +89,9 @@
             android:ems="5"
             android:hint="@string/cvv_text_hint"
             android:inputType="numberPassword"
-            android:maxLength="3" />
+            android:maxLength="3"
+            android:textSize="15dp"
+            android:textIsSelectable="false" />
 
         <EditText
             android:id="@+id/cardLabelText"
@@ -100,7 +105,7 @@
             android:layout_below="@+id/cvvInput"
             android:layout_marginRight="16dp"
             android:hint="@string/label_text_hint"
-            />
+            android:textSize="15dp" />
 
         <ImageView
             android:id="@+id/cardNoPic"
@@ -142,6 +147,20 @@
             android:background="@drawable/pic_size"
             android:src="@drawable/cvv" />
 
+            <ImageView
+                android:id="@+id/cvvHintPic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/cvvhint"
+                android:layout_above="@+id/cardLabelPic"
+                android:layout_alignLeft="@+id/year"
+                android:layout_alignStart="@+id/year"
+                android:layout_alignTop="@+id/cvvInput"
+                android:layout_alignRight="@+id/year"
+                android:layout_alignEnd="@+id/year" />
+
+
         <ImageView
             android:id="@+id/cardLabelPic"
             android:layout_width="40dp"
@@ -164,13 +183,16 @@
             android:layout_alignRight="@+id/cardLabelText"
             android:layout_alignEnd="@+id/cardLabelText"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/rectangle"
             android:gravity="center"
             android:textSize="22dp"
             android:textStyle="normal|bold"
-            android:capitalize="words" />
+            android:capitalize="words"
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
+
     </ScrollView>
 
 </RelativeLayout>

@@ -21,9 +21,10 @@ import java.util.Calendar;
 public class MainActivity extends ActionBarActivity {
 
 
-    private String[] month = {"Month", "Jan(1)", "Feb(2)", "Mar(3)", "Apr(4)", "May(5)", "Jun(6)", "Jul(7)", "Aug(8)", "Sep(9)", "Oct(10)", "Nov(11)", "Dec(12)"};
 
-    private String year[] = new String[100];
+    private String[] month= {"Month","Jan","Feb","Mar","Apr","May","Jun", "Jul", "Aug","Sep", "Oct","Nov","Dec"};
+
+    private String year[] =  new String[52];
 
     private Toolbar toolbar;
 
@@ -42,27 +43,32 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
- //Using arrayAdapter to fill data in months
+        //Using arrayAdapter to fill data in month spinner
         ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, month);
 
-        //to increase size of items in dropdown list
+
+        //to increase size of items in dropdown list in month spinner
         adapter_state1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner1 = (Spinner) findViewById(R.id.month);
         spinner1.setAdapter(adapter_state1);
 
 
         //Adding items to dropdown menu of year
+        // Using system time to get the current year (to fill in the first year in the 'year' spinner
         Calendar c = Calendar.getInstance();
         int first_year = c.get(Calendar.YEAR);
 
-        year[0] = "Year";
-        for (int i = 1; i < 50; i++) {
-            year[i] = Integer.toString(first_year);
-            first_year = first_year + 1;
+      // Storing total years in an array
+        year[0]= "Year";
+        for(int i=1; i<52; i++ ){
+            year[i]= Integer.toString(first_year);
+            first_year=first_year+1;
         }
 
-
+        //Using arrayAdapter to fill data in year spinner
         ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
+
+        //to increase size of items in dropdown list in year spinner
         adapter_state2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner2 = (Spinner) findViewById(R.id.year);
         spinner2.setAdapter(adapter_state2);
