@@ -1,11 +1,8 @@
-<RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,7 +10,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:focusable="false">
 
 
             <include
@@ -33,6 +31,14 @@
             android:hint="@string/card_no_text"
             android:inputType="numberSigned"
             android:maxLength="16"
+            android:autoText="false"
+            android:editable="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:letterSpacing="3"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:nestedScrollingEnabled="false"
             android:textSize="15dp" />
 
         <EditText
