@@ -4,14 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     android:background="#ffffff">
-=======
-    android:background="#F1F8E9">
->>>>>>> d49de74dbea50a9b889fad98829e908abede85d5
-
-
-
 
 
     <ScrollView
@@ -39,7 +32,8 @@
             android:layout_toRightOf="@+id/cardNoPic"
             android:hint="@string/card_no_text"
             android:inputType="numberSigned"
-            android:maxLength="16" />
+            android:maxLength="16"
+            android:textSize="14dp" />
 
         <EditText
             android:id="@+id/nameInput"
@@ -52,7 +46,8 @@
             android:layout_alignTop="@+id/namePic"
             android:layout_marginRight="16dp"
             android:hint="@string/card_text_hint"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="14dp" />
 
         <Spinner
             android:id="@+id/month"
@@ -84,7 +79,9 @@
             android:ems="5"
             android:hint="@string/cvv_text_hint"
             android:inputType="numberPassword"
-            android:maxLength="3" />
+            android:maxLength="3"
+            android:textSize="14dp"
+            android:textIsSelectable="false" />
 
         <EditText
             android:id="@+id/cardLabelText"
@@ -97,7 +94,8 @@
             android:layout_alignTop="@+id/cardLabelPic"
             android:layout_below="@+id/cvvInput"
             android:layout_marginRight="16dp"
-            android:hint="@string/label_text_hint" />
+            android:hint="@string/label_text_hint"
+            android:textSize="14dp" />
 
         <ImageView
             android:id="@+id/cardNoPic"
@@ -139,6 +137,20 @@
             android:background="@drawable/pic_size"
             android:src="@drawable/cvv" />
 
+            <ImageView
+                android:id="@+id/cvvHintPic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/cvvhint"
+                android:layout_above="@+id/cardLabelPic"
+                android:layout_alignLeft="@+id/year"
+                android:layout_alignStart="@+id/year"
+                android:layout_alignTop="@+id/cvvInput"
+                android:layout_alignRight="@+id/year"
+                android:layout_alignEnd="@+id/year" />
+
+
         <ImageView
             android:id="@+id/cardLabelPic"
             android:layout_width="40dp"
@@ -168,11 +180,7 @@
             android:capitalize="words" />
 
     </RelativeLayout>
-<<<<<<< HEAD
 
     </ScrollView>
 
-=======
-    </ScrollView>
->>>>>>> d49de74dbea50a9b889fad98829e908abede85d5
 </RelativeLayout>
