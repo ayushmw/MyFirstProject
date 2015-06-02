@@ -53,7 +53,7 @@
 
         <Spinner
             android:id="@+id/month"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/expiryPic"
             android:layout_alignLeft="@+id/cardInput"
@@ -88,7 +88,6 @@
             android:layout_alignStart="@+id/cardInput"
             android:layout_alignTop="@+id/cvvPic"
             android:layout_toRightOf="@+id/cvvPic"
-            android:ems="5"
             android:hint="@string/cvv_text_hint"
             android:inputType="numberPassword"
             android:maxLength="3"
@@ -118,7 +117,7 @@
             android:layout_height="40dp"
             android:layout_below="@+id/app_bar"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/pic_size"
             android:src="@drawable/cardno" />
 
@@ -146,7 +145,7 @@
             android:id="@+id/cvvPic"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/expiryPic"
+            android:layout_below="@+id/validityOptionalText"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/pic_size"
@@ -171,7 +170,7 @@
             android:id="@+id/cardLabelPic"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/cvvPic"
+            android:layout_below="@+id/cvvOptionalText"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/pic_size"
@@ -189,15 +188,48 @@
             android:layout_alignRight="@+id/cardLabelText"
             android:layout_alignEnd="@+id/cardLabelText"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/rectangle"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/selector_button"
             android:gravity="center"
             android:textSize="22dp"
             android:textStyle="normal|bold"
             android:capitalize="words"
             android:textColor="#ffffff" />
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="* Optional for Maestro"
+                android:id="@+id/validityOptionalText"
+                android:layout_below="@+id/month"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="* Optional for Maestro"
+                android:id="@+id/cvvOptionalText"
+                android:layout_below="@+id/cvvPic"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="* Optional"
+                android:id="@+id/labelOptionalText"
+                android:layout_below="@+id/cardLabelPic"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="16dp"/>
+
+        </RelativeLayout>
 
     </ScrollView>
 

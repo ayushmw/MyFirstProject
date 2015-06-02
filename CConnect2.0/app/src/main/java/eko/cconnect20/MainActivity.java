@@ -20,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    private String[] month= {"MONTHnoh  no","JAN","FEB","MAR","APR","MAY","JUN", "JUL", "AUG","SEP", "OCT","NOV","DEC"};
+    private String[] month= {"MONTH","JAN","FEB","MAR","APR","MAY","JUN", "JUL", "AUG","SEP", "OCT","NOV","DEC"};
 
     private String year[] =  new String[52];
 
@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Using arrayAdapter to fill data in month spinner
-        ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.preference_category, month);
+        ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, month);
 
 
         //to increase size of items in dropdown list in month spinner
@@ -64,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         //Using arrayAdapter to fill data in year spinner
-        ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.preference_category, year);
+        ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, year);
 
         //to increase size of items in dropdown list in year spinner
         adapter_state2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
