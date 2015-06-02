@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo4"
+        android:padding="8dp"
+        android:id="@+id/listIcon"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/app_bar"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="52XX-XXXX-XXXX-1234"
+        android:padding="8dp"
+        android:id="@+id/listText"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="92dp"
+        android:textColor="#fff"
+        android:textSize="17dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name on Card"
+        android:id="@+id/textView2"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/listText"
+        android:layout_alignStart="@+id/listText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MM/YY"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/listText"
+        android:layout_alignRight="@+id/listText"
+        android:layout_alignEnd="@+id/listText"
+        android:layout_marginRight="28dp"
+        android:layout_marginEnd="28dp"
+        android:textStyle="bold"
+        android:textColor="#fff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VALID THRU"
+        android:id="@+id/textView4"
+        android:textColor="#fff"
+        android:textSize="8dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+</RelativeLayout>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+
+            <include
+                android:id="@+id/app_bar"
+                layout="@layout/app_bar" />
+
+            <EditText
+                android:id="@+id/cardInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/cardNoPic"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/cardNoPic"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toRightOf="@+id/cardNoPic"
+                android:layout_toEndOf="@+id/cardNoPic"
+                android:hint="@string/card_no_text"
+                android:inputType="numberSigned"
+                android:maxLength="19"
+                android:textSize="16sp"
+                android:importantForAccessibility="yes"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/nameInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/namePic"
+                android:layout_alignLeft="@+id/cardInput"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/cardInput"
+                android:layout_alignTop="@+id/namePic"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/card_text_hint"
+                android:inputType="textNoSuggestions|textPersonName|textCapCharacters"
+                android:textSize="16sp"
+                android:importantForAccessibility="yes"
+                android:textAlignment="center" />
+
+            <Spinner
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/expiryPic"
+                android:layout_alignLeft="@+id/cardInput"
+                android:layout_alignStart="@+id/cardInput"
+                android:layout_alignTop="@+id/expiryPic"
+                android:dropDownVerticalOffset="-56dp"
+                android:dropDownWidth="75dp"
+                android:clickable="true"
+                android:spinnerMode="dialog"
+                android:textAlignment="center" />
+
+            <Spinner
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/month"
+                android:layout_alignTop="@+id/month"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/month"
+                android:layout_toEndOf="@+id/month"
+                android:dropDownVerticalOffset="-56dp"
+                android:dropDownWidth="75dp"
+                android:clickable="true"
+                android:spinnerMode="dialog"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/cvvInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/cvvPic"
+                android:layout_alignLeft="@+id/cardInput"
+                android:layout_alignStart="@+id/cardInput"
+                android:layout_alignTop="@+id/cvvPic"
+                android:layout_toRightOf="@+id/cvvPic"
+                android:layout_toEndOf="@+id/cvvPic"
+                android:hint="@string/cvv_text_hint"
+                android:inputType="numberPassword"
+                android:maxLength="3"
+                android:textSize="16sp"
+                android:textIsSelectable="false"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/cardLabelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/cardLabelPic"
+                android:layout_alignLeft="@+id/cardInput"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/cardInput"
+                android:layout_alignTop="@+id/cardLabelPic"
+                android:layout_below="@+id/cvvInput"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/label_text_hint"
+                android:textSize="16sp"
+                android:inputType="textPersonName|textCapCharacters"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/cardNoPic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/app_bar"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/cardno" />
+
+            <ImageView
+                android:id="@+id/namePic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/cardNoPic"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/cardname" />
+
+            <ImageView
+                android:id="@+id/expiryPic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/namePic"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/expiry" />
+
+            <ImageView
+                android:id="@+id/cvvPic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/validityOptionalText"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/cvv" />
+
+            <ImageView
+                android:id="@+id/cvvHintPic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/cvvhint"
+                android:layout_above="@+id/cardLabelPic"
+                android:layout_alignLeft="@+id/year"
+                android:layout_alignStart="@+id/year"
+                android:layout_alignTop="@+id/cvvInput"
+                android:layout_alignBottom="@+id/cvvInput"
+                android:layout_alignRight="@+id/year"
+                android:layout_alignEnd="@+id/year" />
+
+
+            <ImageView
+                android:id="@+id/cardLabelPic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/cvvOptionalText"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pic_size"
+                android:src="@drawable/cardlabel" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_text"
+                android:id="@+id/bSaveCard"
+                android:layout_marginTop="45dp"
+                android:layout_below="@+id/cardLabelText"
+                android:layout_alignLeft="@+id/cardLabelPic"
+                android:layout_alignStart="@+id/cardLabelPic"
+                android:layout_alignRight="@+id/cardLabelText"
+                android:layout_alignEnd="@+id/cardLabelText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/selector_button"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textStyle="normal|bold"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/validity_optional_text"
+                android:id="@+id/validityOptionalText"
+                android:layout_below="@+id/month"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/cvv_optional_text"
+                android:id="@+id/cvvOptionalText"
+                android:layout_below="@+id/cvvPic"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/label_optional_text"
+                android:id="@+id/labelOptionalText"
+                android:layout_below="@+id/cardLabelPic"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

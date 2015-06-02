@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#4caf50</color>  // Activity bar color
+    <color name="primaryColorDark">#388e3c</color> // Status bar color
+    <color name="accentColor">#4caf50</color>  // Accent color or secondary color
+</resources>
