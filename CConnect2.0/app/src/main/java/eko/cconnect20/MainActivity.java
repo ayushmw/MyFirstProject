@@ -20,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    private String[] month= {"Month","JAN","FEB","MAR","APR","MAY","JUN", "JUL", "AUG","SEP", "OCT","NOV","DEC"};
+    private String[] month= {"MONTHnoh  no","JAN","FEB","MAR","APR","MAY","JUN", "JUL", "AUG","SEP", "OCT","NOV","DEC"};
 
     private String year[] =  new String[52];
 
