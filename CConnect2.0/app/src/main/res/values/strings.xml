@@ -8,4 +8,8 @@
     <string name="cvv_text_hint">CVV/CVC</string>
     <string name="card_text_hint">Name on Card</string>
     <string name="card_no_text">Credit/Debit Card Number</string>
+    <string name="button_text">Save Card</string>
+    <string name="validity_optional_text">* Optional for Maestro</string>
+    <string name="cvv_optional_text">* Optional for Maestro</string>
+    <string name="label_optional_text">* Optional</string>
 </resources>
