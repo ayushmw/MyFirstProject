@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo4"
+        android:padding="8dp"
+        android:id="@+id/imBgImage"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/app_bar"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="52XX-XXXX-XXXX-1234"
+        android:padding="8dp"
+        android:id="@+id/tvCardNumber"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="92dp"
+        android:textColor="#fff"
+        android:textSize="17dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name on Card"
+        android:id="@+id/tvName"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/tvCardNumber"
+        android:layout_alignStart="@+id/tvCardNumber" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MM/YY"
+        android:id="@+id/tvExpiry"
+        android:layout_below="@+id/tvCardNumber"
+        android:layout_alignRight="@+id/tvCardNumber"
+        android:layout_alignEnd="@+id/tvCardNumber"
+        android:layout_marginRight="28dp"
+        android:layout_marginEnd="28dp"
+        android:textStyle="bold"
+        android:textColor="#fff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VALID THRU"
+        android:id="@+id/textView4"
+        android:textColor="#fff"
+        android:textSize="8dp"
+        android:layout_below="@+id/tvExpiry"
+        android:layout_alignLeft="@+id/tvExpiry"
+        android:layout_alignStart="@+id/tvExpiry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Card Label"
+        android:id="@+id/tvCardLabel"
+        android:layout_marginTop="185dp"
+        android:layout_alignLeft="@+id/tvName"
+        android:layout_alignStart="@+id/tvName" />
+</RelativeLayout>
