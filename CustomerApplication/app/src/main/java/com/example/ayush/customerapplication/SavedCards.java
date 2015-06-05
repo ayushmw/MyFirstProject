@@ -3,6 +3,7 @@ package com.example.ayush.customerapplication;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -98,7 +99,9 @@ public class SavedCards extends ActionBarActivity {
             i++;
         }
         int tabsInOneLine = indexTab.size() / indexNewLine.size();
-        rowId.add(dataFromDB.substring(0, indexTab.get(0)));
+        if(indexTab.size() > 1){
+            rowId.add(dataFromDB.substring(0, indexTab.get(0)));
+        }
         for (i = 0; i < indexTab.size() - 6; i += tabsInOneLine){
             rowId.add(dataFromDB.substring(indexNewLine.get(i / tabsInOneLine) + 1, indexTab.get(i + tabsInOneLine)));
         }

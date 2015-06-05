@@ -1,6 +1,7 @@
 package com.example.ayush.customerapplication;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -79,6 +80,9 @@ public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
 
         @Override
         public void onClick(View v) {
+            FragmentManager fragmentManager = ((SavedCards) c).getFragmentManager();
+            DeleteDialog deleteDialog = new DeleteDialog();
+            deleteDialog.show(fragmentManager, "DeleteDialog");
             try {
                 long lRowIDToDelete = Long.parseLong(rows.get(getPosition()));
                 SavedCardsDB entryToDelete = new SavedCardsDB(c);
