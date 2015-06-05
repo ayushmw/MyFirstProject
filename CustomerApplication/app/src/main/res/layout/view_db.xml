@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/table">
+
         <TableRow>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="S.No."/>
+                android:text="S.No."
+                android:id="@+id/tvSNo" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Card Number"/>
+                android:text="Card Number" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"/>
+                android:text="Name" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CVV"/>
+                android:text="CVV" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Label"/>
+                android:text="Label" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expiry Month"/>
+                android:text="Expiry Month" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expiry Year"/>
+                android:text="Expiry Year" />
         </TableRow>
     </TableLayout>
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="get info from db"
-        android:id="@+id/tvSQLInfo"/>
+        android:id="@+id/tvSQLInfo" />
+
 </LinearLayout>

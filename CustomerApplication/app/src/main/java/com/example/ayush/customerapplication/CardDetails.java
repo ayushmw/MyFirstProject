@@ -20,6 +20,7 @@ import android.widget.Toast;
 import android.view.View.OnKeyListener;
 import android.view.KeyEvent;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 
 
@@ -28,7 +29,7 @@ public class CardDetails extends ActionBarActivity implements AdapterView.OnItem
     Spinner spinner1, spinner2;
     EditText etCardNo, etName, etCVV, etCardLabel;
     private String year[] = new String[52];
-    int initialYear, monthReturned, yearReturned, keyDel;
+    int initialYear, monthReturned = 0, yearReturned = 0, keyDel;
     Toolbar toolbar;
     Button bSaveCard;
     String a;
@@ -180,6 +181,8 @@ public class CardDetails extends ActionBarActivity implements AdapterView.OnItem
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent2 = new Intent("com.example.ayush.customerapplication.VIEWDB");
+            startActivity(intent2);
             return true;
         }
 
@@ -228,10 +231,10 @@ public class CardDetails extends ActionBarActivity implements AdapterView.OnItem
                 dialog.show();
             } finally {
                 if (didItWork) {
-                    Toast.makeText(CardDetails.this, "Card saved.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CardDetails.this, "Card saved", Toast.LENGTH_SHORT).show();
                 }
             }
-            Intent intent = new Intent("com.example.ayush.customerapplication.VIEWDB");
+            Intent intent = new Intent("com.example.ayush.customerapplication.SAVEDCARDS");
             startActivity(intent);
         }
     }

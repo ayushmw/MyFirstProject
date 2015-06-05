@@ -55,9 +55,9 @@ public class SavedCardsDB {
         int iYear = cursor.getColumnIndex(KEY_YEAR);
         String result = "";
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            result += cursor.getString(iRow) + "\t" + cursor.getString(iCardNumber)
-                    + "\t" + cursor.getString(iName) + "\t" + cursor.getString(iCvv) + "\t" + cursor.getString(iCardLabel)
-                    + "\t" + cursor.getString(iMonth) + "\t" + cursor.getString(iYear)+ "\n";
+            result += cursor.getString(iRow) + '\t' + cursor.getString(iCardNumber)
+                    + '\t' + cursor.getString(iName) + '\t' + cursor.getString(iCvv) + '\t' + cursor.getString(iCardLabel)
+                    + '\t' + cursor.getString(iMonth) + '\t' + cursor.getString(iYear)+ '\n';
         }
         return result;
     }
