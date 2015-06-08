@@ -1,6 +1,7 @@
 package com.example.ayush.customerapplication;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -8,12 +9,16 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 
@@ -26,12 +31,16 @@ import java.util.List;
 /**
  * Created by Ayush on 28-05-2015.
  */
-public class SavedCards extends ActionBarActivity {
+public class SavedCards extends ActionBarActivity implements VizAdapter.ClickListener, DeleteDialog.Communicator {
     private RecyclerView recyclerView;
     private VizAdapter adapter;
     private List<Integer> bgImage;
     List<String> cardNo, name, cardLabel, month, year, rowId;
     List<Integer> indexTab, indexNewLine;
+    int getPosition;
+    RelativeLayout relative_layout_top, rel;
+    TextView tvAddCardInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +48,30 @@ public class SavedCards extends ActionBarActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         adapter = new VizAdapter(this, getData());
+        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        if (indexNewLine.get(0) == -1){
+            rel = (RelativeLayout) findViewById(R.id.rel);
+            relative_layout_top = new RelativeLayout(this);
+            RelativeLayout.LayoutParams layoutRules = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT
+            );
+            rel.addView(relative_layout_top, layoutRules);
+            tvAddCardInfo = new TextView(this);
+            tvAddCardInfo.setText("Tap the plus button below to add cards to this list");
+            RelativeLayout.LayoutParams tvRules = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+            );
+            tvAddCardInfo.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+            tvRules.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            tvRules.addRule(RelativeLayout.CENTER_VERTICAL);
+            tvAddCardInfo.setGravity(Gravity.CENTER);
+            relative_layout_top.addView(tvAddCardInfo, tvRules);
+        }
 
         ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.plus);
@@ -157,5 +188,41 @@ public class SavedCards extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void itemClicked(View view, int position) {
+        if (view.getId() == R.id.bDeleteCard){
+            FragmentManager fragmentManager = getFragmentManager();
+            DeleteDialog deleteDialog = new DeleteDialog();
+            deleteDialog.show(fragmentManager, "DeleteDialog");
+            getPosition = position;
+        }
+    }
+
+    @Override
+    public void onDialog(boolean delete) {
+
+        VizAdapter vizAdapter = new VizAdapter(this, getData());
+        if (delete){
+            try {
+                long lRowIDToDelete = Long.parseLong(rowId.get(getPosition));
+                SavedCardsDB entryToDelete = new SavedCardsDB(this);
+                entryToDelete.open();
+                entryToDelete.deleteEntry(lRowIDToDelete);
+                entryToDelete.close();
+                recreate();
+                Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+            } catch (SQLException e) {
+                Dialog dialog2 = new Dialog(this);
+                dialog2.setTitle("Shoot! Something went wrong");
+                TextView tv = new TextView(this);
+                tv.setText(e.toString());
+                dialog2.setContentView(tv);
+                dialog2.show();
+            } finally {
+                vizAdapter.deleteRow(getPosition);
+            }
+        }
     }
 }
