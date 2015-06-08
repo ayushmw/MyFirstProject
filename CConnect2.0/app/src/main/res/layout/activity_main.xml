@@ -36,7 +36,7 @@
             android:hint="@string/card_no_text"
             android:inputType="numberSigned"
             android:maxLength="19"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:importantForAccessibility="yes"
             android:textAlignment="center" />
 
@@ -54,9 +54,10 @@
             android:layout_marginEnd="16dp"
             android:hint="@string/card_text_hint"
             android:inputType="textNoSuggestions|textPersonName|textCapCharacters"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:importantForAccessibility="yes"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:onClick="checkCard"/>
 
         <Spinner
             android:id="@+id/month"
@@ -101,9 +102,10 @@
             android:hint="@string/cvv_text_hint"
             android:inputType="numberPassword"
             android:maxLength="3"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textIsSelectable="false"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:onClick="checkCard"/>
 
         <EditText
             android:id="@+id/cardLabelText"
@@ -119,9 +121,10 @@
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
             android:hint="@string/label_text_hint"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:inputType="textPersonName|textCapCharacters"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:onClick="checkCard"/>
 
         <ImageView
             android:id="@+id/cardNoPic"
@@ -210,7 +213,8 @@
             android:gravity="center"
             android:textSize="25sp"
             android:textStyle="normal|bold"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:onClick="checkCard"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -223,7 +227,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -236,7 +240,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -249,7 +253,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
         </RelativeLayout>
 
