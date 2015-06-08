@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+=======
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/rel">
+>>>>>>> b0f3e9314de2c71449b24dbc5d3a9d2e7cab5f50
     <RelativeLayout
         android:id="@+id/relative_layout_below"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="wrap_content">
+=======
+        android:layout_height="wrap_content"
+        android:id="@+id/relative_layout_top">
+>>>>>>> b0f3e9314de2c71449b24dbc5d3a9d2e7cab5f50
 
     </RelativeLayout>
 
@@ -14,6 +24,10 @@
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_below="@+id/relative_layout_below"
         android:scrollbars="vertical" />
+=======
+        android:layout_below="@+id/relative_layout_top"/>
+>>>>>>> b0f3e9314de2c71449b24dbc5d3a9d2e7cab5f50
 </RelativeLayout>

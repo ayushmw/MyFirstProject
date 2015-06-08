@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,7 +26,8 @@ public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
     private LayoutInflater inflater;
     List<Information> data = Collections.emptyList();
     Context c;
-    List<String> rows;
+    public List<String> rows;
+    private ClickListener clickListener;
 
     public VizAdapter(Context context, List<Information> data) {
         inflater = LayoutInflater.from(context);
@@ -41,6 +44,18 @@ public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.custom_row, parent, false);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.card_toolbar);
+        toolbar.setTitle("My Card");
+        if (toolbar != null) {
+            // inflate your menu
+            toolbar.inflateMenu(R.menu.card_menu);
+            toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    return true;
+                }
+            });
+        }
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
@@ -48,12 +63,20 @@ public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Information current = data.get(position);
-        holder.tvCardNumber.setText(current.cardNum);
+        String currentCardNo;
+        currentCardNo = current.cardNum.substring(0,2) + "XX-XXXX-XXXX-" + current.cardNum.substring(15);
+        holder.tvCardNumber.setText(currentCardNo);
         holder.tvName.setText(current.name);
         holder.tvExpiry.setText(current.month + "/" + current.year);
-        holder.tvCardLabel.setText(current.cardLabel);
+        if (current.cardLabel.trim().length() > 0){
+            holder.toolbar.setTitle(current.cardLabel);
+        }
         holder.imBgImage.setImageResource(current.bgImageID);
         rows.add(current.rowID);
+    }
+
+    public void setClickListener(ClickListener clickListener){
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -63,42 +86,31 @@ public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvCardNumber, tvExpiry, tvName, tvCardLabel;
+        TextView tvCardNumber, tvExpiry, tvName;
         ImageView imBgImage;
         Button bDeleteCard;
+        Toolbar toolbar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvCardNumber = (TextView) itemView.findViewById(R.id.tvCardNumber);
             tvExpiry = (TextView) itemView.findViewById(R.id.tvExpiry);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvCardLabel = (TextView) itemView.findViewById(R.id.tvCardLabel);
             imBgImage = (ImageView) itemView.findViewById(R.id.imBgImage);
             bDeleteCard = (Button) itemView.findViewById(R.id.bDeleteCard);
             bDeleteCard.setOnClickListener(this);
+            toolbar = (Toolbar) itemView.findViewById(R.id.card_toolbar);
         }
 
         @Override
         public void onClick(View v) {
-            FragmentManager fragmentManager = ((SavedCards) c).getFragmentManager();
-            DeleteDialog deleteDialog = new DeleteDialog();
-            deleteDialog.show(fragmentManager, "DeleteDialog");
-            try {
-                long lRowIDToDelete = Long.parseLong(rows.get(getPosition()));
-                SavedCardsDB entryToDelete = new SavedCardsDB(c);
-                entryToDelete.open();
-                entryToDelete.deleteEntry(lRowIDToDelete);
-                entryToDelete.close();
-                deleteRow(getPosition());
-                Toast.makeText(c, "Deleted", Toast.LENGTH_SHORT).show();
-            } catch (SQLException e) {
-                Dialog dialog2 = new Dialog(c);
-                dialog2.setTitle("Shoot! Something went wrong");
-                TextView tv = new TextView(c);
-                tv.setText(e.toString());
-                dialog2.setContentView(tv);
-                dialog2.show();
+            if (clickListener != null){
+                clickListener.itemClicked(v, getPosition());
             }
         }
+    }
+
+    public interface ClickListener{
+        public void itemClicked(View view, int position);
     }
 }
