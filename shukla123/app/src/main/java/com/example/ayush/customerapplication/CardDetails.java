@@ -1,7 +1,9 @@
 package com.example.ayush.customerapplication;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,12 +13,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnKeyListener;
@@ -27,13 +26,9 @@ import java.util.Calendar;
 
 // check validity when we click on save button
 
-public class CardDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-    private String[] month = {"Expiry Month", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    Spinner spinner1, spinner2;
-    EditText etCardNo, etName, etCVV, etCardLabel;
-    private String year[] = new String[52];
-    int initialYear, monthReturned = 0, yearReturned = 0, keyDel;
-    ImageView expiryPic, cvvPic, cvvHintPic;
+public class CardDetails extends AppCompatActivity implements View.OnClickListener {
+    EditText etCardNo, etName, etCVV, etCardLabel, etExpiry;
+    int monthReturned = 0, yearReturned = 0, keyDel;
     public int count = 0;
     Toolbar toolbar;
     Button bSaveCard;
@@ -55,48 +50,21 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Using arrayAdapter to fill data in months
-        ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, month);
-
-        //to increase size of items in dropdown list
-        adapter_state1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1 = (Spinner) findViewById(R.id.month);
-        spinner1.setAdapter(adapter_state1);
-
 
         //Adding items to dropdown menu of year
-        Calendar c = Calendar.getInstance();
-        int first_year = c.get(Calendar.YEAR);
-        initialYear = first_year;
-
-        year[0] = "Expiry Year";
-        for (int i = 1; i < 52; i++) {
-            year[i] = Integer.toString(first_year);
-            first_year += 1;
-        }
-
-
-        ArrayAdapter<String> adapter_state2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
-        adapter_state2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cvvPic = (ImageView) findViewById(R.id.cvvPic);
-        cvvHintPic = (ImageView) findViewById(R.id.cvvHintPic);
-        expiryPic = (ImageView) findViewById(R.id.expiryPic);
-        spinner2 = (Spinner) findViewById(R.id.year);
-        spinner2.setAdapter(adapter_state2);
-        etCardNo = (EditText) findViewById(R.id.cardInput);
-        etName = (EditText) findViewById(R.id.nameInput);
-        etCVV = (EditText) findViewById(R.id.cvvInput);
-        etCardLabel = (EditText) findViewById(R.id.cardLabelText);
+        etCardNo = ((com.iangclifton.android.floatlabel.FloatLabel) findViewById(R.id.cardInput)).getEditText();
+        etName = ((com.iangclifton.android.floatlabel.FloatLabel) findViewById(R.id.nameInput)).getEditText();
+        etCVV = ((com.iangclifton.android.floatlabel.FloatLabel) findViewById(R.id.cvvInput)).getEditText();
+        etExpiry = ((com.iangclifton.android.floatlabel.FloatLabel) findViewById(R.id.expiryInput)).getEditText();
+        etCardLabel = ((com.iangclifton.android.floatlabel.FloatLabel) findViewById(R.id.cardLabelText)).getEditText();
         bSaveCard = (Button) findViewById(R.id.bSaveCard);
         bSaveCard.setOnClickListener(this);
-        spinner1.setOnItemSelectedListener(this);
-        spinner2.setOnItemSelectedListener(this);
 
         etCardNo.setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View v) {
                 //since nothing is in here, nothing will happen.
-
                 return true;
             }
         });
@@ -106,15 +74,10 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public boolean onLongClick(View v) {
                 //since nothing is in here, nothing will happen.
-
                 return true;
             }
         });
-        /*EditText editText = (EditText)findViewById(R.id.editText);
 
-// Set drawables for left, top, right, and bottom - send 0 for nothing
-        editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.fail, 0);
-*/
         etCardNo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             public void onFocusChange(View v, boolean hasFocus) {
@@ -123,27 +86,21 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
                     //always use .equals("") rather than null as there is difference between them
                     //"" is an actual string, albeit an empty one.(we can use .length , .substring)
                     // null, however, means that the String variable points to nothing.(we can't use .length , .substring)
-
                     count = count + 1;
                     if (etCardNo.getText().toString().equals("")) {
                         etCardNo.setNextFocusDownId(etName.getId());
                     } else {
-                        if (checkCard() == false) {
+                        if (!checkCard()) {
                             etCardNo.setError("Invalid Card Number");
                         }
                     }
                 }
-
             }
-
-
                /* if (hasFocus && count != 0) {
                     checkCard();
                     Log.d("TAG2", "has focus");
 
                 }*/
-
-
         });
 
         //we are using text watcher to keep eye on the input text
@@ -157,7 +114,6 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
-                // TODO Auto-generated method stub
             }
 
             /*onTextChanged(CharSequence s, int start, int before, int count).
@@ -173,8 +129,8 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
                 } else {
                     boolean flag = true;
                     String eachBlock[] = etCardNo.getText().toString().split("-");
-                    for (int i = 0; i < eachBlock.length; i++) {
-                        if (eachBlock[i].length() > 4) {
+                    for (String anEachBlock : eachBlock) {
+                        if (anEachBlock.length() > 4) {
                             flag = false;
                         }
                     }
@@ -224,14 +180,13 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
                 if (count != 0) {
                     if (etCardNo.getText().toString().replace("-", "").length() != 16) {
                         etCardNo.setError("Invalid Card Number");
-                    } else if (checkCard() == false) {
+                    } else if (!checkCard()) {
                         etCardNo.setError("Invalid Card Number");
                     }
                 }
             }
 
         });
-
 
         etName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -257,7 +212,6 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
         etCVV.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -268,7 +222,6 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
                         etCVV.setError("Invalid CVV");
                     }
                 }
-
             }
 
             @Override
@@ -276,8 +229,21 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
 
             }
         });
-    }
 
+        etExpiry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    expiry();
+            }
+        });
+        etExpiry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expiry();
+            }
+        });
+    }
 
     public boolean checkCard() {
         String text_string = etCardNo.getText().toString();
@@ -347,40 +313,17 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        int position1 = spinner1.getSelectedItemPosition();
-        int position2 = spinner2.getSelectedItemPosition();
-        for (monthReturned = 1; monthReturned <= 12; monthReturned++) {
-            if (monthReturned == position1)
-                break;
-        }
-        for (yearReturned = initialYear; yearReturned <= initialYear + 50; yearReturned++) {
-            if (yearReturned == position2 + initialYear - 1)
-                break;
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
 
     public void onClick(View v) {
         int flag = 0, flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0, flag6 = 0;
-
         if (v.getId() == R.id.bSaveCard) {
-
-
             if (etCardNo.getText().toString().equals("")) {
                 etCardNo.setError("Invalid Card Number");
                 flag = 1;
                 flag1 = 1;
             }
-
             if (flag == 0) {
-                if (checkCard() == false) {
+                if (!checkCard()) {
                     etCardNo.setError("Invalid Card Number");
                     flag2 = 1;
                 }
@@ -444,6 +387,24 @@ public class CardDetails extends AppCompatActivity implements AdapterView.OnItem
                 etCVV.requestFocus();
             }
         }
+    }
 
+    public void expiry() {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                monthReturned = monthOfYear;
+                yearReturned = year;
+                etExpiry.setText("" + (monthReturned + 1) + "/" + yearReturned);
+            }
+        }, year, month, day);
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+        datePicker.setMinDate(c.getTimeInMillis());
+        datePickerDialog.getDatePicker().findViewById(Resources.getSystem().getIdentifier("day", "id", "android")).setVisibility(View.GONE);
+        datePickerDialog.show();
     }
 }

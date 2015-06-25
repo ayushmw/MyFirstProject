@@ -14,6 +14,9 @@ public class ColorPicker extends AppCompatActivity implements SeekBar.OnSeekBarC
     int red = 0, green = 0, blue = 0;
     View colorView;
     String cardColor = String.format("#%02x%02x%02x", red, green, blue).toUpperCase();
+    static final String RED_PROGRESS = "redProgress";
+    static final String GREEN_PROGRESS = "greenProgress";
+    static final String BLUE_PROGRESS = "blueProgress";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +32,18 @@ public class ColorPicker extends AppCompatActivity implements SeekBar.OnSeekBarC
         redSeekBar.setOnSeekBarChangeListener(this);
         greenSeekBar.setOnSeekBarChangeListener(this);
         blueSeekBar.setOnSeekBarChangeListener(this);
+
+        if (savedInstanceState != null) {
+            redSeekBar.setProgress(savedInstanceState.getInt(RED_PROGRESS));
+            greenSeekBar.setProgress(savedInstanceState.getInt(GREEN_PROGRESS));
+            blueSeekBar.setProgress(savedInstanceState.getInt(BLUE_PROGRESS));
+        }
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int id = seekBar.getId();
-        switch (id){
+        switch (id) {
             case R.id.redSeekBar:
                 red = progress;
                 break;
@@ -50,10 +59,12 @@ public class ColorPicker extends AppCompatActivity implements SeekBar.OnSeekBarC
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {}
+    public void onStopTrackingTouch(SeekBar seekBar) {
+    }
 
     @Override
     public void onClick(View v) {
@@ -61,5 +72,13 @@ public class ColorPicker extends AppCompatActivity implements SeekBar.OnSeekBarC
         intent.putExtra("bgColor", cardColor);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt(RED_PROGRESS, red);
+        savedInstanceState.putInt(GREEN_PROGRESS, green);
+        savedInstanceState.putInt(BLUE_PROGRESS, blue);
+        super.onSaveInstanceState(savedInstanceState);
     }
 }

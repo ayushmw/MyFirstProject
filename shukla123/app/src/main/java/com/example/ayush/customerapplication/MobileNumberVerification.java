@@ -5,25 +5,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLException;
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.Random;
 
 
 public class MobileNumberVerification extends AppCompatActivity {
     Toolbar toolbar;
-    EditText etMobileNumber, etOTP;
-    Button bSendOTP, bVerify;
+    EditText etMobileNumber;
+    Button bSendOTP;
     int otp;
-    LinearLayout linearLayoutBottom;
+    Intent intent;
+    String personName, email;
+    TextView tvGPlusName, tvGPlusEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,37 +34,66 @@ public class MobileNumberVerification extends AppCompatActivity {
         setContentView(R.layout.mobile_number_verification);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        linearLayoutBottom = (LinearLayout) findViewById(R.id.linearLayoutBottom);
+        intent = getIntent();
+        personName = intent.getStringExtra("personName");
+        email = intent.getStringExtra("email");
+        tvGPlusName = (TextView) findViewById(R.id.tvGPlusName);
+        tvGPlusEmail = (TextView) findViewById(R.id.tvGPlusEmail);
+        tvGPlusName.setText(personName);
+        tvGPlusEmail.setText(email);
         bSendOTP = (Button) findViewById(R.id.bSendOTP);
-        bVerify = (Button) findViewById(R.id.bVerify);
         etMobileNumber = (EditText) findViewById(R.id.etMobileNumber);
-        etOTP = (EditText) findViewById(R.id.etOTP);
         bSendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etMobileNumber.getText().toString().length() == 10){
+                if (etMobileNumber.getText().toString().length() == 10) {
                     sendOTP();
-                    linearLayoutBottom.setVisibility(View.VISIBLE);
-                }
-                else etMobileNumber.setError("Enter 10 digit mobile number");
-            }
-        });
-        bVerify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verifyOTP();
+                    new MaterialDialog.Builder(MobileNumberVerification.this)
+                            .title("Verify Mobile")
+                            .content("We have sent a One Time Password (OTP) to your mobile number for verification, enter it below")
+                            .positiveText("Verify")
+                            .negativeText("Resend OTP")
+                            .inputType(InputType.TYPE_CLASS_NUMBER)
+                            .inputMaxLength(4)
+                            .input("OTP", null, new MaterialDialog.InputCallback() {
+                                @Override
+                                public void onInput(MaterialDialog materialDialog, CharSequence charSequence) {
+                                    boolean result = verifyOTP(charSequence);
+                                    if (result)
+                                        materialDialog.dismiss();
+                                }
+                            })
+                            .autoDismiss(false)
+                            .callback(new MaterialDialog.ButtonCallback() {
+                                          @Override
+                                          public void onPositive(MaterialDialog dialog) {
+                                          }
+
+                                          @Override
+                                          public void onNegative(MaterialDialog dialog) {
+                                              sendOTP();
+                                          }
+                                      }
+                            )
+                            .show();
+                } else etMobileNumber.setError("Enter 10 digit mobile number");
             }
         });
     }
 
-    private void verifyOTP() {
-        if (Integer.parseInt(etOTP.getText().toString()) == otp) {
+    private boolean verifyOTP(CharSequence charSequence) {
+        boolean result;
+        if (charSequence.toString().length() == 0) {
+            Toast.makeText(this, "Incorrect OTP", Toast.LENGTH_SHORT).show();
+            result = false;
+        } else if (Integer.parseInt(charSequence.toString()) == otp) {
+            result = true;
             boolean didItWork = true;
             try {
-                long mobNo = Long.parseLong(etMobileNumber.getText().toString());
+                String mobNo = etMobileNumber.getText().toString();
                 SavedCardsDB entry = new SavedCardsDB(this);
                 entry.open();
-                entry.createEntryMN(mobNo);
+                entry.createEntryGP(email, personName, 1, mobNo, "true");
                 entry.close();
             } catch (Exception e) {
                 didItWork = false;
@@ -75,13 +107,16 @@ public class MobileNumberVerification extends AppCompatActivity {
                 if (didItWork) {
                     Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MobileNumberVerification.this, SavedCards.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 }
             }
         } else {
             Toast.makeText(this, "Incorrect OTP", Toast.LENGTH_SHORT).show();
+            result = false;
         }
+        return result;
     }
 
     private void sendOTP() {

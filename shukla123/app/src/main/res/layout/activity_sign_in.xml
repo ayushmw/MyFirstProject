@@ -17,66 +17,66 @@
 
 
 
-        <TextView
-            android:id="@+id/doubleContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/keopay"
-            android:layout_marginBottom="250dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="@string/loginText"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000"
-            />
+    <TextView
+        android:id="@+id/doubleContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/keopay"
+        android:layout_marginBottom="250dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/loginText"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000000"
+        />
 
 
 
 
-        <Button
-            android:id="@+id/signin"
-            android:layout_width="230dp"
-            android:layout_height="45dp"
-            android:layout_above="@+id/eko"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
-            android:background="#F44336"
-            android:drawableLeft="@drawable/gplus48"
-            android:ellipsize="start"
-            android:text="Sign in with Gmail"
-            android:textAllCaps="false"
-            android:textColor="#FFF"
-            android:textSize="16dp" />
+    <Button
+        android:id="@+id/signin"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_above="@+id/eko"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:background="#F44336"
+        android:drawableLeft="@drawable/gplus48"
+        android:ellipsize="start"
+        android:text="Sign in with Gmail"
+        android:textAllCaps="false"
+        android:textColor="#FFF"
+        android:textSize="16dp" />
 
 
 
-        <TextView
-            android:id="@+id/powered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Powered by"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:gravity="center_horizontal"
-            android:layout_marginLeft="115dp"
-            android:layout_marginStart="4dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="3dp"
-            />
+    <TextView
+        android:id="@+id/powered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Powered by"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="115dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp"
+        />
 
-        <TextView
-            android:id="@+id/eko"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EKO/-"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/green"
-            android:textSize="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@+id/powered"
-            android:layout_marginLeft="5dp"
-            android:layout_toEndOf="@+id/powered"/>
+    <TextView
+        android:id="@+id/eko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EKO/-"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/green"
+        android:textSize="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:layout_toRightOf="@+id/powered"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/powered"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/md_widget_color"
-        android:textSize="60dp"
+        android:textSize="60sp"
         />
 
 

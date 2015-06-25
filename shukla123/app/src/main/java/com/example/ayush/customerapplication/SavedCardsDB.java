@@ -26,20 +26,17 @@ public class SavedCardsDB {
     private static final String KEY_BACKGROUND_COLOR = "backgroundColor";
     private static final String KEY_ACTIVE_EMAIL = "activeEmail";
 
-    private static final String KEY_ROW_ID_MN = "mn_id";
-    private static final String KEY_MOBILE_NUMBER = "mobileNumber";
-
     private static final String KEY_ROW_ID_GP = "gp_id";
     private static final String KEY_EMAIL_ADDRESS = "emailAddress";
     private static final String KEY_GPLUS_NAME = "gPlusName";
     private static final String KEY_PROFILE_PIC = "profilePic";
+    private static final String KEY_MOBILE_NUMBER = "mobileNumber";
     private static final String KEY_ACTIVE = "active";
 
     private static final String DATABASE_NAME = "SavedCardsDataBase";
     private static final String DATABASE_TABLE = "CardsTable";
-    private static final String MOBILE_NUMBER_TABLE = "MobileNumberTable";
     private static final String GPLUS_TABLE = "GPlusTable";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     private DBHelper dbHelper;
     private final Context context;
@@ -63,17 +60,12 @@ public class SavedCardsDB {
         return sqLiteDatabase.insert(DATABASE_TABLE, KEY_BACKGROUND_COLOR, contentValues);
     }
 
-    public long createEntryMN(long mobileNumber) throws SQLException {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_MOBILE_NUMBER, mobileNumber);
-        return sqLiteDatabase.insert(MOBILE_NUMBER_TABLE, null, contentValues);
-    }
-
-    public long createEntryGP(String emailAddress, String gPlusName, int profilePic, String active) throws SQLException {
+    public long createEntryGP(String emailAddress, String gPlusName, int profilePic, String mobileNumber, String active) throws SQLException {
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_EMAIL_ADDRESS, emailAddress);
         contentValues.put(KEY_GPLUS_NAME, gPlusName);
         contentValues.put(KEY_PROFILE_PIC, profilePic);
+        contentValues.put(KEY_MOBILE_NUMBER, mobileNumber);
         contentValues.put(KEY_ACTIVE, active);
         return sqLiteDatabase.insert(GPLUS_TABLE, KEY_PROFILE_PIC, contentValues);
     }
@@ -97,16 +89,6 @@ public class SavedCardsDB {
                     + '\t' + cursor.getString(iName) + '\t' + cursor.getString(iCvv) + '\t' + cursor.getString(iCardLabel)
                     + '\t' + cursor.getString(iMonth) + '\t' + cursor.getString(iYear) + '\t' + cursor.getString(iDefaultCard)
                     + '\t' + cursor.getString(iBackgroundColor) + '\t' + cursor.getString(iActiveEmail) +  '\n';
-        }
-        return result;
-    }
-
-    public List<String> getDataMN() throws SQLException {
-        String[] columns = new String[]{KEY_MOBILE_NUMBER};
-        Cursor cursor = sqLiteDatabase.query(MOBILE_NUMBER_TABLE, columns, null, null, null, null, null);
-        List<String> result = new ArrayList<>();
-        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            result.add(cursor.getString(cursor.getColumnIndex(KEY_MOBILE_NUMBER)));
         }
         return result;
     }
@@ -138,11 +120,12 @@ public class SavedCardsDB {
         int iEmailAddress = cursor.getColumnIndex(KEY_EMAIL_ADDRESS);
         int iGPlusName = cursor.getColumnIndex(KEY_GPLUS_NAME);
         int iProfilePic = cursor.getColumnIndex(KEY_PROFILE_PIC);
+        int iMobileNumber = cursor.getColumnIndex(KEY_MOBILE_NUMBER);
         int iActive = cursor.getColumnIndex(KEY_ACTIVE);
         String result = "";
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             result += cursor.getInt(iRow) + "\t" + cursor.getString(iEmailAddress) + "\t" + cursor.getString(iGPlusName)
-                    + "\t" + cursor.getInt(iProfilePic)+ "\t" + cursor.getString(iActive) +  "\n";
+                    + "\t" + cursor.getInt(iProfilePic) + "\t" + cursor.getString(iMobileNumber) + "\t" + cursor.getString(iActive) +  "\n";
         }
         return result;
     }
@@ -259,17 +242,13 @@ public class SavedCardsDB {
                     + KEY_DEFAULT_CARD + " TEXT NOT NULL, " + KEY_BACKGROUND_COLOR + " VARCHAR(255), " + KEY_ACTIVE_EMAIL + " TEXT NOT NULL);");
 
             db.execSQL("CREATE TABLE " + GPLUS_TABLE + " (" + KEY_ROW_ID_GP + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + KEY_EMAIL_ADDRESS + " VARCHAR(255), " + KEY_GPLUS_NAME + " VARCHAR(255), " + KEY_PROFILE_PIC + " INTEGER, " + KEY_ACTIVE + " TEXT NOT NULL);");
-
-            db.execSQL("CREATE TABLE " + MOBILE_NUMBER_TABLE + " (" + KEY_ROW_ID_MN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + KEY_MOBILE_NUMBER + " INTEGER NOT NULL);");
+                    + KEY_EMAIL_ADDRESS + " VARCHAR(255), " + KEY_GPLUS_NAME + " VARCHAR(255), " + KEY_PROFILE_PIC + " INTEGER, " + KEY_MOBILE_NUMBER + " TEXT NOT NULL, " + KEY_ACTIVE + " TEXT NOT NULL);");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
             db.execSQL("DROP TABLE IF EXISTS " + GPLUS_TABLE);
-            db.execSQL("DROP TABLE IF EXISTS " + MOBILE_NUMBER_TABLE);
             onCreate(db);
         }
     }

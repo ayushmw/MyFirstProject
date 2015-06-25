@@ -8,62 +8,64 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
-    <LinearLayout
+
+    <EditText
+        android:id="@+id/etMobileNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_below="@+id/tvGPlusEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="25dp"
+        android:hint="Your mobile number"
+        android:inputType="number"
+        android:maxLength="10" />
 
-        <LinearLayout
-            android:id="@+id/linearLayoutTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/bSendOTP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
+        android:background="@drawable/selector_button"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp" />
 
-            <EditText
-                android:id="@+id/etMobileNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:maxLength="10"
-                android:hint="Mobile Number"
-                android:inputType="number" />
 
-            <Button
-                android:id="@+id/bSendOTP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Send OTP" />
+    <ImageView
+        android:id="@+id/imProfilePic"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/app_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/tvGPlusName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imProfilePic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="Name"
+        android:textColor="#ff000000"
+        android:textSize="17dp"
+        android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/linearLayoutBottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayoutTop"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <EditText
-                android:id="@+id/etOTP"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:maxLength="4"
-                android:ems="10"
-                android:hint="OTP"
-                android:inputType="number" />
-
-            <Button
-                android:id="@+id/bVerify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Verify" />
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvGPlusEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvGPlusName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="email"
+        android:textColor="#ff000000"
+        android:textSize="17dp"
+        android:textStyle="bold" />
 </RelativeLayout>
