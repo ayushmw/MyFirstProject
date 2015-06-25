@@ -173,7 +173,7 @@ public class SavedCards extends AppCompatActivity implements VizAdapter.ClickLis
                     info.logout();
                     info.close();
                 }
-            } else if (isNetworkAvailable() == false) {
+            } else if (!isNetworkAvailable()) {
                 Toast.makeText(this, "Please check your Internet Connection", Toast.LENGTH_SHORT).show();
             }
 
