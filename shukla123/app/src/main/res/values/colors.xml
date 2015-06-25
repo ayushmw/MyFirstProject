@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#4caf50</color>  // Activity bar color
+    <color name="primaryColorDark">#388e3c</color> // Status bar color
+    <color name="accentColor">#4caf50</color>  // Accent color or secondary color
+    <color name="pale_yellow">#FFFFB2</color> //highlight color
+    <color name="cyan">#00BCD4</color> //default card color
+    <color name="white">#FFFFFF</color>
+    <color name="red">#F44336</color>
+    <color name="blue">#2196F3</color>
+    <color name="green">#4CAF50</color>
+    <color name="grey">#b3b3b3</color>
+    <color name="md_widget_color">#0288D1</color>
+</resources>

@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ayush.customerapplication.MobileNumberVerification">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMobileNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:maxLength="10"
+                android:hint="Mobile Number"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/bSendOTP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send OTP" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayoutTop"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/etOTP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:maxLength="4"
+                android:ems="10"
+                android:hint="OTP"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/bVerify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verify" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
