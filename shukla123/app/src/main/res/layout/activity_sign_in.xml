@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:layout_width="match_parent"
-
-    android:layout_height="match_parent"
-
-    android:padding="15dp"
     android:id="@+id/signinFrame"
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context=".AndroidGooglePlusExample">
 
 
-
-
+    <TextView
+        android:id="@+id/keopay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:text="@string/keopay_text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/md_widget_color"
+        android:textSize="60sp" />
 
 
     <TextView
@@ -27,69 +31,57 @@
         android:padding="10dp"
         android:text="@string/loginText"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#000000"
-        />
-
-
+        android:textColor="#000000" />
 
 
     <Button
         android:id="@+id/signin"
         android:layout_width="230dp"
         android:layout_height="45dp"
-        android:layout_above="@+id/eko"
+        android:layout_above="@+id/below"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         android:background="#F44336"
         android:drawableLeft="@drawable/gplus48"
+        android:drawableStart="@drawable/gplus48"
         android:ellipsize="start"
-        android:text="Sign in with Gmail"
+        android:text="@string/signIn_button_text"
         android:textAllCaps="false"
         android:textColor="#FFF"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
-
-
-    <TextView
-        android:id="@+id/powered"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/below"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Powered by"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="115dp"
-        android:layout_marginStart="4dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp"
-        />
-
-    <TextView
-        android:id="@+id/eko"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EKO/-"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/green"
-        android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:layout_toRightOf="@+id/powered"
-        android:layout_marginLeft="5dp"
-        android:layout_toEndOf="@+id/powered"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="KEOPAY"
-        android:id="@+id/keopay"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/md_widget_color"
-        android:textSize="60sp"
-        />
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2.15">
+
+        <TextView
+            android:id="@+id/powered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Powered by "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/eko"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:gravity="start"
+            android:text="@string/EKO_text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/green"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
