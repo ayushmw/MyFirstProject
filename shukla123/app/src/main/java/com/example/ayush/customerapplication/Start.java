@@ -6,9 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.sql.SQLException;
 
-/**
- * Created by Ayush on 01-06-2015.
- */
 public class Start extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +25,7 @@ public class Start extends AppCompatActivity {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally {
-                    if (!info.getActive().contains("true")){
+                    if (info.getActive().contains("true")){
                         Intent intent = new Intent(Start.this, SignInActivity.class);
                         startActivity(intent);
                     } else {

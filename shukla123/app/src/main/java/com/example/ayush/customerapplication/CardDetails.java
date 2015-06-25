@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import android.view.View.OnKeyListener;
 import android.view.KeyEvent;
 
+import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.Calendar;
 
@@ -33,7 +35,7 @@ public class CardDetails extends AppCompatActivity implements View.OnClickListen
     Toolbar toolbar;
     Button bSaveCard;
     String a;
-
+    String[] monthArray = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     Integer length;
     String TAG = "WTF";
     Long x;
@@ -230,6 +232,7 @@ public class CardDetails extends AppCompatActivity implements View.OnClickListen
             }
         });
 
+        etExpiry.setKeyListener(null);
         etExpiry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -313,7 +316,6 @@ public class CardDetails extends AppCompatActivity implements View.OnClickListen
         return super.onOptionsItemSelected(item);
     }
 
-
     public void onClick(View v) {
         int flag = 0, flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0, flag6 = 0;
         if (v.getId() == R.id.bSaveCard) {
@@ -394,17 +396,42 @@ public class CardDetails extends AppCompatActivity implements View.OnClickListen
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        CustomDatePickerDialog dp = new CustomDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 monthReturned = monthOfYear;
                 yearReturned = year;
-                etExpiry.setText("" + (monthReturned + 1) + "/" + yearReturned);
+                if (monthReturned < 9)
+                    etExpiry.setText("0" + (monthReturned + 1) + "/" + yearReturned);
+                else
+                    etExpiry.setText("" + (monthReturned + 1) + "/" + yearReturned);
             }
         }, year, month, day);
-        DatePicker datePicker = datePickerDialog.getDatePicker();
+        DatePickerDialog obj = dp.getPicker();
+        DatePicker datePicker = obj.getDatePicker();
         datePicker.setMinDate(c.getTimeInMillis());
-        datePickerDialog.getDatePicker().findViewById(Resources.getSystem().getIdentifier("day", "id", "android")).setVisibility(View.GONE);
-        datePickerDialog.show();
+        try{
+            Field[] datePickerDialogFields = obj.getClass().getDeclaredFields();
+            for (Field datePickerDialogField : datePickerDialogFields) {
+                if (datePickerDialogField.getName().equals("mDatePicker")) {
+                    datePickerDialogField.setAccessible(true);
+                    DatePicker datePicker2 = (DatePicker) datePickerDialogField.get(obj);
+                    Field datePickerFields[] = datePickerDialogField.getType().getDeclaredFields();
+                    for (Field datePickerField : datePickerFields) {
+                        if ("mDayPicker".equals(datePickerField.getName()) || "mDaySpinner".equals(datePickerField
+                                .getName())) {
+                            datePickerField.setAccessible(true);
+                            Object dayPicker = new Object();
+                            dayPicker = datePickerField.get(datePicker2);
+                            ((View) dayPicker).setVisibility(View.GONE);
+                        }
+                    }
+                }
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        obj.show();
     }
 }

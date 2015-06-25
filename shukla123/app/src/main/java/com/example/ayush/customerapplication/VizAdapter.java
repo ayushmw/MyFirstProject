@@ -2,34 +2,26 @@ package com.example.ayush.customerapplication;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import javax.security.auth.callback.Callback;
 
 public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
     private LayoutInflater inflater;
@@ -268,7 +260,7 @@ public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
                 e.printStackTrace();
             }
             if (!info.getRowIds().get(getAdapterPosition()).trim().contentEquals(info.getRowOfDefaultCard().trim())) {
-                MaterialDialog materialDialog = new MaterialDialog.Builder(context)
+                new MaterialDialog.Builder(context)
                         //.title("Default Card")
                         .content("Set as default card?")
                         .positiveText("Set Default")
@@ -295,6 +287,6 @@ public class VizAdapter extends RecyclerView.Adapter<VizAdapter.MyViewHolder> {
     }
 
     public interface ClickListener {
-        public void itemClicked(int id, int position, boolean isChecked);
+        void itemClicked(int id, int position, boolean isChecked);
     }
 }
